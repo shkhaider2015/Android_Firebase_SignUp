@@ -38,7 +38,7 @@
             <EditText
                 android:id="@+id/signin_email"
                 android:layout_width="230dp"
-                android:layout_height="50dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="48dp"
                 android:inputType="textEmailAddress"
                 android:background="@color/blue_some"
@@ -66,7 +66,7 @@
             <EditText
                 android:id="@+id/signin_password"
                 android:layout_width="230dp"
-                android:layout_height="50dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="20dp"
                 android:background="@color/blue_some"
                 android:inputType="textPassword"
