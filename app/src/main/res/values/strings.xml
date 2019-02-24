@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Android_Firebase_SignUp</string>
+
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+
+    <string name="registeration">dont have an account?</string>
+</resources>
