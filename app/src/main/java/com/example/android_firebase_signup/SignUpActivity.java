@@ -36,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         findViewById(R.id.signup_button).setOnClickListener(this);
 
+
     }
 
     public void registerUser()

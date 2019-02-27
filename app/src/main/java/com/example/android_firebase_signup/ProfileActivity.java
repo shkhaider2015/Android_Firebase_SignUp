@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     String mProfileImageURL;
 
     private static final int CHOOSE_IMAGE = 101;
+    private static final String TAG = "ProfileActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +58,27 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         mSubmit = findViewById(R.id.submit_profile);
         mProgressBar = findViewById(R.id.progressbar);
 
+        loadUserInformation();
+
         mProfilePicture.setOnClickListener(this);
         mFullName.setOnClickListener(this);
         mSubmit.setOnClickListener(this);
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() == null)
+        {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
+    }
+
+
 
     @Override
     public void onClick(View v)
@@ -102,6 +120,30 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 e.printStackTrace();
             }
         }
+    }
+
+    private void loadUserInformation()
+    {
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        if(firebaseUser != null)
+        {
+            if(firebaseUser.getPhotoUrl() != null)
+            {
+                Log.d(TAG, "loadUserInformation: " + firebaseUser.getPhotoUrl().toString());
+                Glide.with(this)
+                        .load(firebaseUser.getPhotoUrl().toString())
+                        .into(mProfilePicture);
+
+            }
+            if(firebaseUser.getDisplayName() != null)
+            {
+                mFullName.setText(firebaseUser.getDisplayName());
+
+            }
+        }
+
+
     }
 
     private void saveUserInformation()
@@ -163,7 +205,23 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                         {
                             mProgressBar.setVisibility(View.GONE);
-                            mProfileImageURL = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                            mStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    Log.d(TAG, "onSuccess: " + mProfileImageURL);
+                                    mProfileImageURL = uri.toString();
+
+
+                                }
+                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
 
 
                         }
