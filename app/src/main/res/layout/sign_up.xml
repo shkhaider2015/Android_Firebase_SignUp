@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/first_name"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+            <EditText
+                android:layout_width="230dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="18dp"
+                android:inputType="text"
+                android:background="@color/blue_some"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/last_name"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+            <EditText
+                android:layout_width="230dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="18dp"
+                android:inputType="text"
+                android:background="@color/blue_some"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="150dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/email"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+            <EditText
+                android:layout_width="230dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="58dp"
+                android:inputType="textEmailAddress"
+                android:background="@color/blue_some"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="200dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/password"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+            <EditText
+                android:layout_width="230dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="25dp"
+                android:inputType="textPassword"
+                android:background="@color/blue_some"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="250dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/confirm_password"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+            <EditText
+                android:layout_width="230dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="38sp"
+                android:inputType="textPassword"
+                android:background="@color/blue_some"/>
+
+        </LinearLayout>
+
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="350dp"
+            android:layout_marginStart="120dp">
+
+            <RadioButton
+                android:text="@string/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
+            <RadioButton
+                android:text="@string/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginStart="20sp"/>
+
+        </RadioGroup>
+
+        <Button
+            android:text="@string/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blueDark"
+            android:layout_marginStart="170dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="430dp"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

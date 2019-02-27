@@ -3,6 +3,22 @@
 
     <string name="email">E-mail</string>
     <string name="password">Password</string>
-
     <string name="registeration">dont have an account?</string>
+    <string name="warn_email">Invalid email</string>
+    <string name="warn_password">Invalid password</string>
+
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="confirm_password">Confirm</string>
+    <string name="submit">Submit</string>
+    <string name="login">Login</string>
+    <string name="signup">SignUp</string>
+
+    <string name="notmal_text">20sp</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+    <string name="image_info">Upload your profile pic</string>
+    <string name="full_name">Full Name</string>
+
 </resources>

@@ -36,6 +36,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.login_button).setOnClickListener(this);
     }
 
+
+    @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.jump_to_sign_up:
+                finish();
+                startActivity( new Intent(getApplicationContext(), SignUpActivity.class));
+
+                break;
+            case R.id.login_button:
+                userLogin();
+                break;
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() != null)
+        {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+    }
+
     private void userLogin()
     {
         String email = mEmail.getText().toString().trim();
@@ -79,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if(task.isSuccessful())
                 {
+                    finish();
                     Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -94,19 +124,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public void onClick(View v)
-    {
-        switch (v.getId())
-        {
-            case R.id.jump_to_sign_up:
-                startActivity( new Intent(getApplicationContext(), SignUpActivity.class));
 
-                break;
-            case R.id.login_button:
-                userLogin();
-                break;
-        }
-
-    }
 }
