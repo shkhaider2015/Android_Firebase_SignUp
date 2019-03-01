@@ -9,12 +9,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -33,6 +38,7 @@ import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private TextView textView_Varification;
     private EditText mFullName;
     private ImageView mProfilePicture;
     private Button mSubmit;
@@ -53,10 +59,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         mAuth = FirebaseAuth.getInstance();
         mStorageRef = FirebaseStorage.getInstance().getReference("profilepics/" + System.currentTimeMillis() + ".jpg");
 
+        Toolbar toolbar = findViewById(R.id.tolbar);
+        setSupportActionBar(toolbar);
+
         mProfilePicture = findViewById(R.id.image_profile);
         mFullName = findViewById(R.id.full_name);
         mSubmit = findViewById(R.id.submit_profile);
         mProgressBar = findViewById(R.id.progressbar);
+        textView_Varification = findViewById(R.id.textview_varify);
 
         loadUserInformation();
 
@@ -122,9 +132,38 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+
+
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        switch (item.getItemId())
+        {
+            case R.id.logout:
+
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+        }
+
+        return true;
+    }
+
     private void loadUserInformation()
     {
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        final FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
         if(firebaseUser != null)
         {
@@ -136,11 +175,45 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         .into(mProfilePicture);
 
             }
+
             if(firebaseUser.getDisplayName() != null)
             {
                 mFullName.setText(firebaseUser.getDisplayName());
 
             }
+
+            if(firebaseUser.isEmailVerified())
+            {
+                textView_Varification.setText("Email is Varified");
+            }
+            else
+            {
+                textView_Varification.setText("Click here for varification");
+                textView_Varification.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                       firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>()
+                       {
+                           @Override
+                           public void onComplete(@NonNull Task<Void> task)
+                           {
+                               if(task.isSuccessful())
+                               {
+                                   Toast.makeText(ProfileActivity.this, "Varification Email sent", Toast.LENGTH_SHORT).show();
+                               }
+                               else
+                               {
+                                   Toast.makeText(ProfileActivity.this, "Varification Failed", Toast.LENGTH_SHORT).show();
+                               }
+
+                           }
+                       });
+                    }
+                });
+            }
+
         }
 
 

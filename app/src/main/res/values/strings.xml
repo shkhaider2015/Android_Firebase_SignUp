@@ -12,6 +12,7 @@
     <string name="confirm_password">Confirm</string>
     <string name="submit">Submit</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="signup">SignUp</string>
 
     <string name="notmal_text">20sp</string>
@@ -20,5 +21,6 @@
 
     <string name="image_info">Upload your profile pic</string>
     <string name="full_name">Full Name</string>
+    <string name="verification">Varification ..</string>
 
 </resources>

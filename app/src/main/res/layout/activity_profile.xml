@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity"
-    android:background="@color/blue">
+    android:background="@color/blue"
+    android:theme="@style/profile">
+
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -16,6 +20,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blueDark">
+
+        </android.support.v7.widget.Toolbar>
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,6 +56,14 @@
             android:layout_marginTop="60dp"
             android:textSize="20sp"
             android:background="@color/blueLight"/>
+
+        <TextView
+            android:id="@+id/textview_varify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/verification"
+            android:layout_marginStart="100dp"/>
 
 
 
